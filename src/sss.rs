@@ -2,8 +2,8 @@
 use num_bigint::BigInt;
 use num_traits::{One, Zero, ToPrimitive};
 
-const G: i128 = 3; // Replace with the actual generator value
-const P: i128 = 170141183460469231731687303715884105727; // Replace with the actual prime modulus
+const G: i128 = 3; 
+const P: i128 = 170141183460469231731687303715884105727; 
 
 #[derive(Debug, Clone)]
 pub struct Rational {
@@ -171,7 +171,7 @@ pub fn recover_secret(shares: &[Share], k: usize) -> Option<BigInt> {
 pub fn generate_commitments(poly: &Vec<i128>) -> Vec<i128> {
     let mut commitments = Vec::new();
     for &coeff in poly.iter() {
-        // Compute g^coeff mod P as the commitment
+        // Computing g^coeff mod P as the commitment for VSS
         let commitment = mod_exp(G, coeff, P);
         commitments.push(commitment);
     }
